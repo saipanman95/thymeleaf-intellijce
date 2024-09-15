@@ -1,13 +1,49 @@
 <idea-plugin>
     <id>com.mdrsolutions.thymeleaf.thymeleaf-support</id>
     <name>Thymeleaf Support</name>
-    <version>0.0.1</version>
-    <vendor email="michael.d.rodgers.jr@gmail.com" url="https://www.mdrsolutions.com">MDR Solutions</vendor>
+    <version>1.0.0</version>
+    <vendor email="michael.d.rodgers.jr@gmail.com" url="https://www.linkedin.com/in/michael-d-rodgers-jr/">Michael D. Rodgers, Jr</vendor>
 
     <description><![CDATA[
-    This plugin provides autocompletion for common Thymeleaf attributes, including `th:`, `sec:`, and `layout:` namespaces.
-    It simplifies the development of Thymeleaf templates by suggesting the most frequently used attributes.
+    <p><strong>Thymeleaf Support</strong> is an IntelliJ IDEA plugin designed to enhance the development experience for building web applications using Thymeleaf templates. This plugin provides comprehensive autocompletion for common Thymeleaf attributes and dialects, allowing developers to quickly and accurately build templates with ease.</p>
+
+    <p><strong>Supported Thymeleaf namespaces:</strong></p>
+    <ul>
+      <li><code>th:</code> Thymeleaf core attributes (e.g., <code>th:text</code>, <code>th:if</code>, <code>th:each</code>, and more)</li>
+      <li><code>sec:</code> Spring Security attributes (e.g., <code>sec:authorize</code>, <code>sec:authentication</code>)</li>
+      <li><code>layout:</code> Layout dialect attributes (e.g., <code>layout:decorator</code>, <code>layout:fragment</code>)</li>
+    </ul>
+
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>Autocompletion for Thymeleaf, Spring Security, and Layout dialect attributes</li>
+      <li>Detailed tooltips for attributes with descriptions</li>
+      <li>Seamless integration with IntelliJ IDEA’s HTML and XML editors</li>
+    </ul>
+
+    <p>This plugin is perfect for developers working with Spring Boot and Thymeleaf, reducing the manual effort required to build dynamic templates and enhancing the overall productivity of Thymeleaf-based projects.</p>
+
+    <p>For more information, visit the <a href="https://www.thymeleaf.org">Thymeleaf project website</a>.</p>
     ]]></description>
+
+    <change-notes><![CDATA[
+    <h2>Version 1.0.0 - Initial Release</h2>
+    <h3>New Features</h3>
+    <ul>
+      <li>Support for Thymeleaf core attributes (<code>th:</code> namespace)</li>
+      <li>Support for Spring Security attributes (<code>sec:</code> namespace)</li>
+      <li>Support for Thymeleaf Layout dialect (<code>layout:</code> namespace)</li>
+      <li>Autocomplete for all supported attributes</li>
+      <li>Tooltips with attribute descriptions</li>
+      <li>Namespace auto-insertion for Thymeleaf and other supported dialects</li>
+      <li>Seamless integration with HTML and XML editors in IntelliJ IDEA</li>
+    </ul>
+    <h3>Bug Fixes</h3>
+    <ul>
+      <li>Resolved duplicate attribute suggestions in autocompletion</li>
+      <li>Improved stability of attribute completion across different namespaces</li>
+    </ul>
+    ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
@@ -18,7 +54,6 @@
         <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAttributesProvider" />
         <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityAttributesProvider" />
 
-
         <completion.contributor language="HTML"
                                 implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafCompletionContributor"/>
         <completion.contributor language="HTML"
@@ -27,5 +62,5 @@
                                 implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityCompletionContributor"/>
     </extensions>
 
-    <idea-version since-build="202.0" until-build="231.*" />
+    <!--    <idea-version since-build="202.0" until-build="231.*" />-->
 </idea-plugin>
