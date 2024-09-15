@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>com.mdrsolutions.thymeleaf.thymeleaf-support</id>
+    <name>Thymeleaf Support</name>
+    <version>0.0.1</version>
+    <vendor email="michael.d.rodgers.jr@gmail.com" url="https://www.mdrsolutions.com">MDR Solutions</vendor>
+
+    <description><![CDATA[
+    This plugin provides autocompletion for common Thymeleaf attributes, including `th:`, `sec:`, and `layout:` namespaces.
+    It simplifies the development of Thymeleaf templates by suggesting the most frequently used attributes.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.xml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafAttributesProvider" />
+        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAttributesProvider" />
+        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityAttributesProvider" />
+
+
+        <completion.contributor language="HTML"
+                                implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafCompletionContributor"/>
+        <completion.contributor language="HTML"
+                                implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutCompletionContributor"/>
+        <completion.contributor language="HTML"
+                                implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityCompletionContributor"/>
+    </extensions>
+
+    <idea-version since-build="202.0" until-build="231.*" />
+</idea-plugin>
