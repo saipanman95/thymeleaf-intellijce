@@ -52,7 +52,7 @@
     </ul>
     ]]></change-notes>
 
-    <idea-version since-build="202" until-build="243.*" />
+    <idea-version since-build="231.8109.175" until-build="243.*" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.xml</depends>
