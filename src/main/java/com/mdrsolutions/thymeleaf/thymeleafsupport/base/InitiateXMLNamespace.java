@@ -31,54 +31,48 @@ public class InitiateXMLNamespace {
         if (text.startsWith(thymeProvider.getAttributeStartingChars())) {
             // Handle Thymeleaf namespace
 
-            ApplicationManager.getApplication().invokeLater(() -> {
-                WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
-                    PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
-                    if (element != null) {
-                        XmlTag rootTag = findRootTag(element);
-                        if (rootTag != null) {
-                            checkAndInsertNamespace(
-                                    rootTag,
-                                    insertionContext.getFile(),
-                                    thymeProvider.getNamespaceAttr(),
-                                    thymeProvider.getNamespaceValue());
-                        }
+            ApplicationManager.getApplication().invokeLater(() -> WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
+                PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
+                if (element != null) {
+                    XmlTag rootTag = findRootTag(element);
+                    if (rootTag != null) {
+                        checkAndInsertNamespace(
+                                rootTag,
+                                insertionContext.getFile(),
+                                thymeProvider.getNamespaceAttr(),
+                                thymeProvider.getNamespaceValue());
                     }
-                });
-            });
+                }
+            }));
         } else if (text.startsWith(layoutProvider.getAttributeStartingChars())) {
             // Handle Layout namespace
-            ApplicationManager.getApplication().invokeLater(() -> {
-                WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
-                    PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
-                    if (element != null) {
-                        XmlTag rootTag = findRootTag(element);
-                        if (rootTag != null) {
-                            checkAndInsertNamespace(
-                                    rootTag,
-                                    insertionContext.getFile(),
-                                    layoutProvider.getNamespaceAttr(),
-                                    layoutProvider.getNamespaceValue());
-                        }
+            ApplicationManager.getApplication().invokeLater(() -> WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
+                PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
+                if (element != null) {
+                    XmlTag rootTag = findRootTag(element);
+                    if (rootTag != null) {
+                        checkAndInsertNamespace(
+                                rootTag,
+                                insertionContext.getFile(),
+                                layoutProvider.getNamespaceAttr(),
+                                layoutProvider.getNamespaceValue());
                     }
-                });
-            });
+                }
+            }));
         } else if (text.startsWith(secProvider.getAttributeStartingChars())){
-            ApplicationManager.getApplication().invokeLater(() -> {
-                WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
-                    PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
-                    if (element != null) {
-                        XmlTag rootTag = findRootTag(element);
-                        if (rootTag != null) {
-                            checkAndInsertNamespace(
-                                    rootTag,
-                                    insertionContext.getFile(),
-                                    secProvider.getNamespaceAttr(),
-                                    secProvider.getNamespaceValue());
-                        }
+            ApplicationManager.getApplication().invokeLater(() -> WriteCommandAction.runWriteCommandAction(insertionContext.getProject(), () -> {
+                PsiElement element = insertionContext.getFile().findElementAt(insertionContext.getStartOffset());
+                if (element != null) {
+                    XmlTag rootTag = findRootTag(element);
+                    if (rootTag != null) {
+                        checkAndInsertNamespace(
+                                rootTag,
+                                insertionContext.getFile(),
+                                secProvider.getNamespaceAttr(),
+                                secProvider.getNamespaceValue());
                     }
-                });
-            });
+                }
+            }));
         }
     }
 
@@ -104,4 +98,5 @@ public class InitiateXMLNamespace {
         }
         return null;
     }
+
 }
