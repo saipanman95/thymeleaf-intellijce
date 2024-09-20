@@ -8,6 +8,7 @@ import com.intellij.psi.html.HtmlTag;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.BaseAttributeCompletionProvider;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.AttributeUtil;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.Thymeleaf;
+import com.mdrsolutions.thymeleaf.thymeleafsupport.namespace.ThymeleafNamespaceRegistry;
 
 import javax.swing.Icon;
 
@@ -17,9 +18,7 @@ public class ThymeleafAttributeCompletionProvider extends BaseAttributeCompletio
 
     @Override
     protected void addCompletionsForType(CompletionParameters parameters, CompletionResultSet resultSet, AttributeUtil attributeUtil) {
-        ThymeleafAttributeUtil.getInstance().getAttributes().forEach(attribute -> {
-            resultSet.addElement(buildLookupElement(attribute, ThymeleafAttributeUtil.getAttributeDescription(attribute)));
-        });
+        ThymeleafAttributeUtil.getInstance().getAttributes().forEach(attribute -> resultSet.addElement(buildLookupElement(attribute, ThymeleafAttributeUtil.getAttributeDescription(attribute))));
     }
 
     @Override
@@ -31,7 +30,7 @@ public class ThymeleafAttributeCompletionProvider extends BaseAttributeCompletio
     private LookupElementBuilder buildLookupElement(String attribute, String typeText) {
         return LookupElementBuilder.create(attribute)
                 .withCaseSensitivity(false)
-                .withIcon(Thymeleaf.ICON) // Assuming Thymeleaf.ICON is already defined
+                .withIcon(Thymeleaf.ICON)
                 .withTypeText(typeText);
     }
 
@@ -42,21 +41,21 @@ public class ThymeleafAttributeCompletionProvider extends BaseAttributeCompletio
 
     @Override
     protected String getAttributeStartingChars() {
-        return "th:";
+        return THYMELEAF_ATTRIBUTE;
     }
 
     @Override
     public String getNamespaceAttr() {
-        return "xmlns:th";
+        return ThymeleafNamespaceRegistry.NamespaceAttribute.THYMELEAF.getAttribute();
     }
 
     @Override
     public String getNamespaceValue() {
-        return "http://www.thymeleaf.org";
+        return ThymeleafNamespaceRegistry.getNamespaceValue(ThymeleafNamespaceRegistry.NamespaceAttribute.THYMELEAF);
     }
 
     @Override
     public Icon getIcon() {
-        return Thymeleaf.ICON;  // Assuming `Thymeleaf.ICON` is an Icon object
+        return Thymeleaf.ICON;
     }
 }
