@@ -41,7 +41,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("202")  // Match this to the actual IntelliJ version
+        sinceBuild.set("231.8109.175")  // Match this to the actual IntelliJ version
         untilBuild.set("243.*")
     }
 
