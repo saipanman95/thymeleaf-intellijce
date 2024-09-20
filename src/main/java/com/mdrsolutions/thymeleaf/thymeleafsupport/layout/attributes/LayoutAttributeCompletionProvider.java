@@ -7,6 +7,7 @@ import com.intellij.psi.html.HtmlTag;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.AttributeUtil;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.BaseAttributeCompletionProvider;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.Thymeleaf;
+import com.mdrsolutions.thymeleaf.thymeleafsupport.namespace.ThymeleafNamespaceRegistry;
 
 import javax.swing.*;
 
@@ -17,21 +18,19 @@ public class LayoutAttributeCompletionProvider extends BaseAttributeCompletionPr
 
     @Override
     protected void addCompletionsForType(CompletionParameters parameters, CompletionResultSet resultSet, AttributeUtil attributeUtil) {
-        LayoutAttributeUtil.getInstance().getAttributes().forEach(attribute ->{
-            resultSet.addElement(buildLookupElement(attribute, LayoutAttributeUtil.getAttributeDescription(attribute)));
-        });
+        LayoutAttributeUtil.getInstance().getAttributes().forEach(attribute -> resultSet.addElement(buildLookupElement(attribute, LayoutAttributeUtil.getAttributeDescription(attribute))));
     }
 
     private LookupElementBuilder buildLookupElement(String attribute, String typeText) {
         return LookupElementBuilder.create(attribute)
                 .withCaseSensitivity(false)
-                .withIcon(Thymeleaf.ICON) // Assuming Thymeleaf.ICON is already defined
+                .withIcon(Thymeleaf.ICON)
                 .withTypeText(typeText);
     }
 
     @Override
     protected String getAttributeStartingChars() {
-        return "layout:";
+        return LAYOUT_ATTRIBUTE;
     }
 
     @Override
@@ -41,12 +40,12 @@ public class LayoutAttributeCompletionProvider extends BaseAttributeCompletionPr
 
     @Override
     public String getNamespaceAttr() {
-        return "xmlns:layout";
+        return ThymeleafNamespaceRegistry.NamespaceAttribute.LAYOUT.getAttribute();
     }
 
     @Override
     public String getNamespaceValue() {
-        return "http://www.ultraq.net.nz/thymeleaf/layout";
+        return ThymeleafNamespaceRegistry.getNamespaceValue(ThymeleafNamespaceRegistry.NamespaceAttribute.LAYOUT);
     }
 
     @Override
