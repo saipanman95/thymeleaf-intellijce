@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.mdrsolutions.thymeleaf.thymeleaf-support</id>
     <name>Thymeleaf Support</name>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <vendor email="michael.d.rodgers.jr@gmail.com" url="https://www.linkedin.com/in/michael-d-rodgers-jr/">Michael D. Rodgers, Jr</vendor>
 
     <description><![CDATA[
@@ -27,32 +27,43 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <h2>Version 1.0.0 - Initial Release</h2>
+    <h2>Version 1.1.0 - Enhancements and Bug Fixes</h2>
     <h3>New Features</h3>
     <ul>
-      <li>Support for Thymeleaf core attributes (<code>th:</code> namespace)</li>
-      <li>Support for Spring Security attributes (<code>sec:</code> namespace)</li>
-      <li>Support for Thymeleaf Layout dialect (<code>layout:</code> namespace)</li>
-      <li>Autocomplete for all supported attributes</li>
-      <li>Tooltips with attribute descriptions</li>
-      <li>Namespace auto-insertion for Thymeleaf and other supported dialects</li>
-      <li>Seamless integration with HTML and XML editors in IntelliJ IDEA</li>
+      <li>Added menu options to insert Thymeleaf, Thymeleaf Layout, and Spring Security namespaces directly into HTML files.</li>
+      <li>Automatic registration of common Thymeleaf namespaces into the IntelliJ schema registry, reducing manual configuration effort.</li>
+    </ul>
+    <h3>Enhancements</h3>
+    <ul>
+      <li>Improved internal structure for managing and accessing namespace attributes and values.</li>
+      <li>Refined UI integration to provide a better user experience when working with HTML files.</li>
+      <li>Added support for ignoring unknown namespaces in the schema registry upon plugin installation.</li>
+      <li>Updated compatibility settings for better support with newer IntelliJ versions.</li>
     </ul>
     <h3>Bug Fixes</h3>
     <ul>
-      <li>Resolved duplicate attribute suggestions in autocompletion</li>
-      <li>Improved stability of attribute completion across different namespaces</li>
+      <li>Resolved issues with namespace attributes not being recognized properly in some cases.</li>
+      <li>Fixed potential conflicts when registering namespaces in the IntelliJ schema registry.</li>
+      <li>Addressed stability issues with autocompletion for certain namespace attributes.</li>
+    </ul>
+    <h3>Notes</h3>
+    <ul>
+      <li>The Spring Security Thymeleaf namespace defaults to the latest version. If using an earlier version, please update the namespace manually and add it to <em>Settings | Languages & Frameworks | Schemas and DTDs | Ignored Schemas and DTDs</em>.</li>
     </ul>
     ]]></change-notes>
 
+    <idea-version since-build="232" until-build="999.*" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.xml</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafAttributesProvider" />
-        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAttributesProvider" />
-        <xml.attributeDescriptorsProvider implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityAttributesProvider" />
+        <xml.attributeDescriptorsProvider
+                implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafAttributesProvider"/>
+        <xml.attributeDescriptorsProvider
+                implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAttributesProvider"/>
+        <xml.attributeDescriptorsProvider
+                implementation="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityAttributesProvider"/>
 
         <completion.contributor language="HTML"
                                 implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafCompletionContributor"/>
@@ -60,7 +71,37 @@
                                 implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutCompletionContributor"/>
         <completion.contributor language="HTML"
                                 implementationClass="com.mdrsolutions.thymeleaf.thymeleafsupport.springsecurity.attributes.SpringSecurityCompletionContributor"/>
+
+        <notificationGroup id="HtmlThymeleaf" displayType="BALLOON" isLogByDefault="true"/>
+        <notificationGroup id="HtmlThymeleafLayout" displayType="BALLOON" isLogByDefault="true"/>
+        <notificationGroup id="HtmlThymeleafSpringSecurity" displayType="BALLOON" isLogByDefault="true"/>
     </extensions>
 
-    <!--    <idea-version since-build="202.0" until-build="231.*" />-->
+    <actions>
+        <action class="com.mdrsolutions.thymeleaf.thymeleafsupport.actions.AddThymeleafNamespace"
+                id="HtmlThymeleaf"
+                text="Add Thymeleaf Namespace"
+                description="Add Thymeleaf Namespace to html">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"
+                          relative-to-action="ProjectViewPopupMenuRefactoringGroup"/>
+        </action>
+        <action class="com.mdrsolutions.thymeleaf.thymeleafsupport.actions.AddThymeleafLayoutNamespace"
+                id="HtmlThymeleafLayout"
+                text="Add Thymeleaf Layout Namespace"
+                description="Add Thymeleaf Layout namespace to html">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"
+                          relative-to-action="ProjectViewPopupMenuRefactoringGroup"/>
+        </action>
+        <action class="com.mdrsolutions.thymeleaf.thymeleafsupport.actions.AddThymeleafSpringSecNamespace"
+                id="HtmlThymeleafSpringSecurity"
+                text="Add Thymeleaf Spring Security Namespace"
+                description="Add Thymeleaf Spring Security namespace to html">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"
+                          relative-to-action="ProjectViewPopupMenuRefactoringGroup"/>
+        </action>
+    </actions>
+
+    <projectListeners>
+        <listener class="com.mdrsolutions.thymeleaf.thymeleafsupport.listeners.UriIgnoreResourceFileOpenListener" topic="com.intellij.openapi.fileEditor.FileOpenedSyncListener" />
+    </projectListeners>
 </idea-plugin>
