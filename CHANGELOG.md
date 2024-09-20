@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 - Resolved issues with namespace attributes not being recognized properly in some cases.
 - Fixed potential conflicts when registering namespaces in the IntelliJ schema registry.
 - Addressed stability issues with autocompletion for certain namespace attributes.
-
+- Fixed bug in SpringSecurityAttributeInfo and LayoutAttributeInfo where the descriptions were not being returned properly. This was due to using missing code during work on updating code layout and architecture.
 ### Notes
 - The Spring Security Thymeleaf namespace defaults to the latest version. If using an earlier version, please update the namespace manually and add it to **Settings | Languages & Frameworks | Schemas and DTDs | Ignored Schemas and DTDs**.
 
