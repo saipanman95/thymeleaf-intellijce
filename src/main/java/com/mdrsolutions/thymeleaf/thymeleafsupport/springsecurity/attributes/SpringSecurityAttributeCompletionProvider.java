@@ -8,8 +8,7 @@ import com.intellij.psi.html.HtmlTag;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.Thymeleaf;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.AttributeUtil;
 import com.mdrsolutions.thymeleaf.thymeleafsupport.base.BaseAttributeCompletionProvider;
-import com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAttributeUtil;
-import com.mdrsolutions.thymeleaf.thymeleafsupport.layout.attributes.LayoutAutoCompleteSuggestions;
+import com.mdrsolutions.thymeleaf.thymeleafsupport.namespace.ThymeleafNamespaceRegistry;
 
 import javax.swing.*;
 
@@ -20,21 +19,19 @@ public class SpringSecurityAttributeCompletionProvider extends BaseAttributeComp
 
     @Override
     protected void addCompletionsForType(CompletionParameters parameters, CompletionResultSet resultSet, AttributeUtil attributeUtil) {
-        SpringSecurityAttributeUtil.getInstance().getAttributes().forEach(attribute ->{
-            resultSet.addElement(buildLookupElement(attribute, SpringSecurityAttributeUtil.getAttributeDescription(attribute)));
-        });
+        SpringSecurityAttributeUtil.getInstance().getAttributes().forEach(attribute -> resultSet.addElement(buildLookupElement(attribute, SpringSecurityAttributeUtil.getAttributeDescription(attribute))));
     }
 
     private LookupElementBuilder buildLookupElement(String attribute, String typeText) {
         return LookupElementBuilder.create(attribute)
                 .withCaseSensitivity(false)
-                .withIcon(Thymeleaf.ICON) // Assuming Thymeleaf.ICON is already defined
+                .withIcon(Thymeleaf.ICON)
                 .withTypeText(typeText);
     }
 
     @Override
     protected String getAttributeStartingChars() {
-        return "sec:";
+        return SPRING_SECURITY_ATTRIBUTE;
     }
 
     @Override
@@ -44,12 +41,12 @@ public class SpringSecurityAttributeCompletionProvider extends BaseAttributeComp
 
     @Override
     public String getNamespaceAttr() {
-        return "xmlns:sec";
+        return ThymeleafNamespaceRegistry.NamespaceAttribute.SPRING_SECURITY.getAttribute();
     }
 
     @Override
     public String getNamespaceValue() {
-        return "http://www.thymeleaf.org/thymeleaf-extras-springsecurity6";
+        return ThymeleafNamespaceRegistry.getNamespaceValue(ThymeleafNamespaceRegistry.NamespaceAttribute.SPRING_SECURITY);
     }
 
     @Override
