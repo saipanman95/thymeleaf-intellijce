@@ -2,27 +2,22 @@ package com.mdrsolutions.thymeleaf.thymeleafsupport.base;
 
 import com.intellij.codeInsight.completion.*;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.util.Iconable;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
 import com.intellij.psi.html.HtmlTag;
 import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlTag;
 import com.intellij.util.ProcessingContext;
-import com.mdrsolutions.thymeleaf.thymeleafsupport.thymeleaf.attributes.ThymeleafAttributeUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 import java.util.logging.Logger;
 
 public abstract class BaseAttributeCompletionProvider extends CompletionProvider<CompletionParameters> {
+
+    protected static final String LAYOUT_ATTRIBUTE = "layout:";
+    protected static final String THYMELEAF_ATTRIBUTE = "th:";
+    protected static final String SPRING_SECURITY_ATTRIBUTE = "sec:";
 
     protected abstract void addCompletionsForType(CompletionParameters parameters,
                                                   CompletionResultSet resultSet,
