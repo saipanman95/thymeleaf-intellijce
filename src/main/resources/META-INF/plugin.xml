@@ -75,6 +75,8 @@
         <notificationGroup id="HtmlThymeleaf" displayType="BALLOON" isLogByDefault="true"/>
         <notificationGroup id="HtmlThymeleafLayout" displayType="BALLOON" isLogByDefault="true"/>
         <notificationGroup id="HtmlThymeleafSpringSecurity" displayType="BALLOON" isLogByDefault="true"/>
+        <notificationGroup id="UriIgnoreResource" displayType="BALLOON" isLogByDefault="true"/>
+
     </extensions>
 
     <actions>
