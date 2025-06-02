@@ -42,7 +42,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("231.8109.175")  // Match this to the actual IntelliJ version
-        untilBuild.set("243.*")
+        untilBuild.set("999.*")
     }
 
     signPlugin {
