@@ -1,4 +1,6 @@
 .gradle
+.gradle-local/
+.intellijPlatform/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

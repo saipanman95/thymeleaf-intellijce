@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2026-05-18
+
+### Compatibility
+- Migrated the build from `org.jetbrains.intellij` 1.x to `org.jetbrains.intellij.platform` 2.x.
+- Updated the Gradle wrapper to `9.5.0` and aligned the plugin build with Java `21` for modern IntelliJ IDEA releases.
+- Raised supported IntelliJ IDEA compatibility to `2024.2` through `2026.1`.
+
+### Enhancements
+- Replaced internal `HtmlElementDescriptorImpl` checks in attribute descriptor providers with safer `HtmlTag` checks.
+- Updated plugin metadata and release notes to match the new platform compatibility range.
+
+### Verification
+- Built and verified the plugin successfully against IntelliJ IDEA `2025.1` and `2026.1` platform builds using JetBrains Plugin Verifier.
+
 ## [1.2.0] - 2025-11-05
 
 ### New Features

@@ -5,7 +5,6 @@ import com.intellij.codeInsight.completion.CompletionResultSet;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.html.HtmlTag;
-import com.intellij.psi.impl.source.html.dtd.HtmlElementDescriptorImpl;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.xml.XmlAttributeDescriptor;
 import com.intellij.xml.XmlAttributeDescriptorsProvider;
@@ -30,7 +29,7 @@ public class LayoutAttributesProvider implements XmlAttributeDescriptorsProvider
     public @Nullable XmlAttributeDescriptor getAttributeDescriptor(String attributeName, XmlTag context) {
         logger.debug("LayoutAttributesProvider.getAttributeDescriptors(...) - attributeName ={"+attributeName+"}, xmlTag={"+context+"}");
 
-        if(!(context.getDescriptor() instanceof HtmlElementDescriptorImpl)) {
+        if (!(context instanceof HtmlTag)) {
             return null;
         }
         LayoutAttributeInfo layoutAttributeInfo = new LayoutAttributeInfo(attributeName);
