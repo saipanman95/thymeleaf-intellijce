@@ -1,38 +1,39 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij") version "1.17.4"
+    id("org.jetbrains.intellij.platform") version "2.16.0"
 }
 
 group = "com.mdrsolutions.thymeleaf"
-version = "1.2.0"
+version = providers.gradleProperty("pluginVersion").get()
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
     implementation("org.jsoup:jsoup:1.16.1")
+
+    intellijPlatform {
+        intellijIdea(providers.gradleProperty("platformVersion"))
+        bundledPlugin("com.intellij.java")
+        pluginVerifier()
+        zipSigner()
+    }
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
-}
-
-intellij {
-    version.set("2023.2.6")
-    type.set("IC")
-    plugins.set(listOf("com.intellij.java", "org.jetbrains.kotlin"))
-    downloadSources.set(true)
-    instrumentCode.set(true)
 }
 
 tasks {
     patchPluginXml {
-        sinceBuild.set("232.0")
-        untilBuild.set("252.*")
+        sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
+        untilBuild.set(providers.gradleProperty("pluginUntilBuild"))
     }
 
     signPlugin {

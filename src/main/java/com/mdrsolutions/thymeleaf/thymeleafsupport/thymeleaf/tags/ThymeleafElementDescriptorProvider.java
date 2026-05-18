@@ -18,4 +18,3 @@ public class ThymeleafElementDescriptorProvider implements XmlElementDescriptorP
         return null;
     }
 }
-
