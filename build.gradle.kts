@@ -49,3 +49,11 @@ tasks {
         enabled = false
     }
 }
+
+intellijPlatform {
+    pluginVerification {
+        ides {
+            current()
+        }
+    }
+}
