@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2026-09-04
+
+### Compatibility
+- Kept the IntelliJ Platform target on the supported IntelliJ IDEA `2024.2` baseline.
+- Preserved the supported IntelliJ IDEA baseline at build `242`.
+- Removed the explicit upper build cap to allow compatibility with IntelliJ IDEA `2026.2` and future IntelliJ versions.
+- Kept the build aligned with Java 21 for the supported baseline.
+- Updated the IntelliJ Platform Gradle Plugin to `2.18.1`.
+
+### Developer Experience
+- Updated GitHub Actions to use JDK 21, matching the Gradle Java toolchain.
+- Updated CI builds to run plugin verification.
+- Updated the release workflow to publish with `publishPlugin` after build and verification.
+
 ## [1.2.1] - 2026-05-18
 
 ### Compatibility

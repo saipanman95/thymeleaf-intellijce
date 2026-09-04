@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij.platform") version "2.16.0"
+    id("org.jetbrains.intellij.platform") version "2.18.1"
 }
 
 group = "com.mdrsolutions.thymeleaf"
@@ -33,7 +33,6 @@ java {
 tasks {
     patchPluginXml {
         sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
-        untilBuild.set(providers.gradleProperty("pluginUntilBuild"))
     }
 
     signPlugin {

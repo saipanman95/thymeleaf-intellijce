@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.mdrsolutions.thymeleaf.thymeleaf-support</id>
     <name>Thymeleaf Support</name>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <vendor email="michael.d.rodgers.jr@gmail.com" url="https://www.linkedin.com/in/michael-d-rodgers-jr/">Michael D. Rodgers, Jr</vendor>
 
     <description><![CDATA[
@@ -26,6 +26,24 @@
     <p>For more information, visit the <a href="https://www.thymeleaf.org">Thymeleaf project website</a>.</p>
     ]]></description>
     <change-notes><![CDATA[
+    <h2>Version 1.2.2 - IntelliJ IDEA Compatibility Update</h2>
+
+    <h3>Compatibility</h3>
+    <ul>
+      <li>Kept the plugin build on the supported IntelliJ IDEA <strong>2024.2</strong> platform baseline.</li>
+      <li>Removed the explicit upper build cap to allow compatibility with IntelliJ IDEA <strong>2026.2</strong> and future IntelliJ versions.</li>
+      <li>Kept the build aligned with the Java 21 runtime requirements for the supported baseline.</li>
+      <li>Updated the IntelliJ Platform Gradle Plugin to the current 2.x toolchain.</li>
+    </ul>
+
+    <h3>Developer Experience</h3>
+    <ul>
+      <li>Aligned CI with the Java 21 toolchain required by the plugin build.</li>
+      <li>Updated release automation to run plugin verification before publishing to JetBrains Marketplace.</li>
+    </ul>
+
+    <p><em>Release Date: September 4, 2026</em></p>
+
     <h2>Version 1.2.1 - IntelliJ Platform Compatibility Update</h2>
 
     <h3>Compatibility</h3>
@@ -107,7 +125,7 @@
     </ul>
     ]]></change-notes>
 
-    <idea-version since-build="242" until-build="261.*" />
+    <idea-version since-build="242" />
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.xml</depends>
